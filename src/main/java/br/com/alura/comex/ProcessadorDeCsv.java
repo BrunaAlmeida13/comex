@@ -18,7 +18,7 @@ public class ProcessadorDeCsv {
 		try {
 
 			URL recursoCSV = ClassLoader.getSystemResource("pedidos.csv");
-			Path caminhoDoArquivo = caminhoDoArquivo = Path.of(recursoCSV.toURI());
+			Path caminhoDoArquivo = Path.of(recursoCSV.toURI());
 
 			Scanner leitorDeLinhas = new Scanner(caminhoDoArquivo);
 
@@ -41,7 +41,8 @@ public class ProcessadorDeCsv {
 
 				quantidadeDeRegistros++;
 			}
-
+			
+			leitorDeLinhas.close();
 		} catch (URISyntaxException e) {
 			throw new RuntimeException("Arquivo pedido.csv não localizado!");
 		} catch (IOException e) {
@@ -49,5 +50,6 @@ public class ProcessadorDeCsv {
 		}
 
 		return this.pedidos;
+		
 	}
 }

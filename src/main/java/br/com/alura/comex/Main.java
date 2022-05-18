@@ -11,41 +11,8 @@ public class Main {
 		Pedido pedido = new Pedido();
 		ArrayList<Pedido> pedidos = new ProcessadorDeCsv().registrarPedidos();
 
-		/*
-		 * try {
-		 * 
-		 * URL recursoCSV = ClassLoader.getSystemResource("pedidos.csv"); Path
-		 * caminhoDoArquivo = caminhoDoArquivo = Path.of(recursoCSV.toURI());
-		 * 
-		 * Scanner leitorDeLinhas = new Scanner(caminhoDoArquivo);
-		 * 
-		 * leitorDeLinhas.nextLine();
-		 * 
-		 * int quantidadeDeRegistros = 0; while (leitorDeLinhas.hasNextLine()) { String
-		 * linha = leitorDeLinhas.nextLine(); String[] registro = linha.split(",");
-		 * 
-		 * String categoria = registro[0]; String produto = registro[1]; BigDecimal
-		 * preco = new BigDecimal(registro[2]); int quantidade =
-		 * Integer.parseInt(registro[3]); LocalDate data = LocalDate.parse(registro[4],
-		 * DateTimeFormatter.ofPattern("dd/MM/yyyy")); String cliente = registro[5];
-		 * 
-		 * Pedido pedido = new Pedido(categoria, produto, cliente, preco, quantidade,
-		 * data); pedidos.add(pedido);
-		 * 
-		 * quantidadeDeRegistros++; }
-		 * 
-		 * } catch (URISyntaxException e) { throw new
-		 * RuntimeException("Arquivo pedido.csv não localizado!"); } catch (IOException
-		 * e) { throw new
-		 * RuntimeException("Erro ao abrir Scanner para processar arquivo!"); }
-		 */
-
 		int totalDeProdutosVendidos = 0;
 		int totalDePedidosRealizados = 0;
-		/*
-		 * BigDecimal montanteDeVendas = BigDecimal.ZERO; Pedido pedidoMaisBarato =
-		 * null; Pedido pedidoMaisCaro = null;
-		 */
 
 		CategoriasProcessadas categoriasProcessadas = new CategoriasProcessadas();
 		int totalDeCategorias = 0;
@@ -53,34 +20,16 @@ public class Main {
 		for (int i = 0; i < pedidos.size(); i++) {
 			Pedido pedidoAtual = pedidos.get(i);
 
-			if (pedidoAtual == null)
-				break;
-
-			/*
-			 * if (pedidoMaisBarato == null || pedidoAtual.getPreco().multiply(new
-			 * BigDecimal(pedidoAtual.getQuantidade()))
-			 * .compareTo(pedidoMaisBarato.getPreco() .multiply(new
-			 * BigDecimal(pedidoMaisBarato.getQuantidade()))) < 0) { pedidoMaisBarato =
-			 * pedidoAtual; }
-			 */
+			if (pedidoAtual == null) break;
 
 			pedido.isMaisBaratoQue(pedidoAtual);
 			pedido.isMaisCaroQue(pedidoAtual);
-
-			/*
-			 * if (pedidoMaisCaro == null || pedidoAtual.getPreco().multiply(new
-			 * BigDecimal(pedidoAtual.getQuantidade())).compareTo(
-			 * pedidoMaisCaro.getPreco().multiply(new
-			 * BigDecimal(pedidoMaisCaro.getQuantidade()))) > 0) { pedidoMaisCaro =
-			 * pedidoAtual; }
-			 */
 
 			pedido.setValorTotal(pedidoAtual);
 
 			totalDeProdutosVendidos += pedidoAtual.getQuantidade();
 			totalDePedidosRealizados++;
 
-			// categoria
 			if (!categoriasProcessadas.contains(pedidoAtual.getCategoria())) {
 				totalDeCategorias++;
 				categoriasProcessadas.add(pedidoAtual.getCategoria());
