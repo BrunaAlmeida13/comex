@@ -4,11 +4,12 @@ import java.math.BigDecimal;
 
 import br.com.alura.comex.formatador.Formatacoes;
 
-public class CalculosPedidos {
+public class CalculosDosPedidos {
 	
 	protected BigDecimal montanteDeVendas = BigDecimal.ZERO;
 	protected Pedido pedidoMaisBarato = null;
 	protected Pedido pedidoMaisCaro = null;
+	private int totalDePedidosRealizados = 0;
 	
 	private Formatacoes formatador = new Formatacoes();
 	
@@ -58,5 +59,15 @@ public class CalculosPedidos {
 	public BigDecimal getValorTotal(Pedido pedidoAtual) {
 		return this.montanteDeVendas = this.montanteDeVendas
 				.add(pedidoAtual.getPreco().multiply(new BigDecimal(pedidoAtual.getQuantidade())));
+	}
+	
+	public int totalDePedidosRealizados(Pedido pedidoAtual) {
+		if(pedidoAtual != null)
+			return this.totalDePedidosRealizados++;
+		return 0;
+	}
+	
+	public int getTotalDePedidosRealizados() {
+		return this.totalDePedidosRealizados;
 	}
 }

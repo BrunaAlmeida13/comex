@@ -3,16 +3,15 @@ package br.com.alura.comex;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import br.com.alura.comex.pedido.CalculosPedidos;
+import br.com.alura.comex.pedido.CalculosDosPedidos;
 import br.com.alura.comex.pedido.Pedido;
 
 public class RelatorioSintetico {
 
 	Pedido pedido = new Pedido();
-	CalculosPedidos calculosPedidos = new CalculosPedidos();
+	CalculosDosPedidos calculosDosPedidos = new CalculosDosPedidos();
 
 	private int totalDeProdutosVendidos = 0;
-	private int totalDePedidosRealizados = 0;
 	private int totalDeCategorias = 0;
 
 	public RelatorioSintetico() {
@@ -22,8 +21,7 @@ public class RelatorioSintetico {
 	private void geraRelatorio() {
 		ArrayList<Pedido> pedidos = new ProcessadorDeCsv().registrarPedidos();
 
-		//CategoriasProcessadas categoriasProcessadas = new CategoriasProcessadas();
-		HashSet<String> categoriasProcessadas2 = new HashSet<String>();
+		HashSet<String> categoriasProcessadas = new HashSet<String>();
 
 		for (int i = 0; i < pedidos.size(); i++) {
 			Pedido pedidoAtual = pedidos.get(i);
@@ -31,17 +29,17 @@ public class RelatorioSintetico {
 			if (pedidoAtual == null)
 				break;
 
-			calculosPedidos.isMaisBaratoQue(pedidoAtual);
-			calculosPedidos.isMaisCaroQue(pedidoAtual);
+			calculosDosPedidos.isMaisBaratoQue(pedidoAtual);
+			calculosDosPedidos.isMaisCaroQue(pedidoAtual);
 
-			calculosPedidos.getValorTotal(pedidoAtual);
+			calculosDosPedidos.getValorTotal(pedidoAtual);
 
 			this.totalDeProdutosVendidos += pedidoAtual.getQuantidade();
-			this.totalDePedidosRealizados++;
+			calculosDosPedidos.totalDePedidosRealizados(pedidoAtual);
 
-			if (!categoriasProcessadas2.contains(pedidoAtual.getCategoria())) {
+			if (!categoriasProcessadas.contains(pedidoAtual.getCategoria())) {
 				totalDeCategorias++;
-				categoriasProcessadas2.add(pedidoAtual.getCategoria());
+				categoriasProcessadas.add(pedidoAtual.getCategoria());
 			}
 		}
 	}
@@ -51,22 +49,18 @@ public class RelatorioSintetico {
 	public void imprimeRelatorio() {
 		this.geraRelatorio();
 		System.out.println("#### RELATÓRIO DE VALORES TOTAIS");
-		System.out.printf("- TOTAL DE PEDIDOS REALIZADOS: %s\n", this.totalDePedidosRealizados);
+		System.out.printf("- TOTAL DE PEDIDOS REALIZADOS: %s\n", calculosDosPedidos.getTotalDePedidosRealizados());
 		System.out.printf("- TOTAL DE PRODUTOS VENDIDOS: %s\n", this.totalDeProdutosVendidos);
 		System.out.printf("- TOTAL DE CATEGORIAS: %s\n", totalDeCategorias);
-		System.out.printf("- MONTANTE DE VENDAS: %s\n", calculosPedidos.valorTotalFormatado());
-		System.out.printf("- PEDIDO MAIS BARATO: %s (%s)\n", calculosPedidos.pedidoMaisBaratoFormatado(),
-				calculosPedidos.getPedidoMaisBarato().getProduto());
-		System.out.printf("- PEDIDO MAIS CARO: %s (%s)\n", calculosPedidos.pedidoMaisCaroQueFormatado(),
-				calculosPedidos.getPedidoMaisCaro().getProduto());
+		System.out.printf("- MONTANTE DE VENDAS: %s\n", calculosDosPedidos.valorTotalFormatado());
+		System.out.printf("- PEDIDO MAIS BARATO: %s (%s)\n", calculosDosPedidos.pedidoMaisBaratoFormatado(),
+				calculosDosPedidos.getPedidoMaisBarato().getProduto());
+		System.out.printf("- PEDIDO MAIS CARO: %s (%s)\n", calculosDosPedidos.pedidoMaisCaroQueFormatado(),
+				calculosDosPedidos.getPedidoMaisCaro().getProduto());
 	}
 
 	public int getTotalDeProdutosVendidos() {
 		return this.totalDeProdutosVendidos;
-	}
-
-	public int getTotalDePedidosRealizados() {
-		return this.totalDePedidosRealizados;
 	}
 
 	public int getTotalDeCategorias() {
