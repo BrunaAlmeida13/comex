@@ -1,6 +1,7 @@
 package br.com.alura.comex;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import br.com.alura.comex.pedido.CalculosPedidos;
 import br.com.alura.comex.pedido.Pedido;
@@ -21,7 +22,8 @@ public class RelatorioSintetico {
 	private void geraRelatorio() {
 		ArrayList<Pedido> pedidos = new ProcessadorDeCsv().registrarPedidos();
 
-		CategoriasProcessadas categoriasProcessadas = new CategoriasProcessadas();
+		//CategoriasProcessadas categoriasProcessadas = new CategoriasProcessadas();
+		HashSet<String> categoriasProcessadas2 = new HashSet<String>();
 
 		for (int i = 0; i < pedidos.size(); i++) {
 			Pedido pedidoAtual = pedidos.get(i);
@@ -37,9 +39,9 @@ public class RelatorioSintetico {
 			this.totalDeProdutosVendidos += pedidoAtual.getQuantidade();
 			this.totalDePedidosRealizados++;
 
-			if (!categoriasProcessadas.contains(pedidoAtual.getCategoria())) {
+			if (!categoriasProcessadas2.contains(pedidoAtual.getCategoria())) {
 				totalDeCategorias++;
-				categoriasProcessadas.add(pedidoAtual.getCategoria());
+				categoriasProcessadas2.add(pedidoAtual.getCategoria());
 			}
 		}
 	}
