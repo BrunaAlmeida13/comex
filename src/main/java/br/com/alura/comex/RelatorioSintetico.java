@@ -1,46 +1,50 @@
 package br.com.alura.comex;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
+import java.util.ArrayList;
 
-public class Main {
+public class RelatorioSintetico {
 
-	public static void main(String[] args) throws IOException, URISyntaxException {
+	Pedido pedido = new Pedido();
 
-		//Pedido pedido = new Pedido();
-		
-		RelatorioSintetico relatorio = new RelatorioSintetico();
+	private int totalDeProdutosVendidos = 0;
+	private int totalDePedidosRealizados = 0;
+	private int totalDeCategorias = 0;
+
+	public RelatorioSintetico() {
+		this.imprimeRelatorio(); 
+	}
 	
-		
-		/*
+	private void geraRelatorio() {
 		ArrayList<Pedido> pedidos = new ProcessadorDeCsv().registrarPedidos();
 
-		int totalDeProdutosVendidos = 0;
-		int totalDePedidosRealizados = 0;
-
 		CategoriasProcessadas categoriasProcessadas = new CategoriasProcessadas();
-		int totalDeCategorias = 0;
+		//int totalDeCategorias = 0;
 
 		for (int i = 0; i < pedidos.size(); i++) {
 			Pedido pedidoAtual = pedidos.get(i);
 
-			if (pedidoAtual == null) break;
+			if (pedidoAtual == null)
+				break;
 
 			pedido.isMaisBaratoQue(pedidoAtual);
 			pedido.isMaisCaroQue(pedidoAtual);
 
 			pedido.getValorTotal(pedidoAtual);
 
-			totalDeProdutosVendidos += pedidoAtual.getQuantidade();
-			totalDePedidosRealizados++;
+			this.totalDeProdutosVendidos += pedidoAtual.getQuantidade();
+			this.totalDePedidosRealizados++;
 
 			if (!categoriasProcessadas.contains(pedidoAtual.getCategoria())) {
 				totalDeCategorias++;
 				categoriasProcessadas.add(pedidoAtual.getCategoria());
 			}
-		}*/
-		
-		/*
+		}
+	}
+
+	
+
+	public void imprimeRelatorio() {
+		this.geraRelatorio();
 		System.out.println("#### RELATÓRIO DE VALORES TOTAIS");
 		System.out.printf("- TOTAL DE PEDIDOS REALIZADOS: %s\n", totalDePedidosRealizados);
 		System.out.printf("- TOTAL DE PRODUTOS VENDIDOS: %s\n", totalDeProdutosVendidos);
@@ -50,6 +54,17 @@ public class Main {
 				pedido.getPedidoMaisBarato().getProduto());
 		System.out.printf("- PEDIDO MAIS CARO: %s (%s)\n", pedido.pedidoMaisCaroQueFormatado(),
 				pedido.getPedidoMaisCaro().getProduto());
-		*/
+	}
+
+	public int getTotalDeProdutosVendidos() {
+		return totalDeProdutosVendidos;
+	}
+
+	public int getTotalDePedidosRealizados() {
+		return totalDePedidosRealizados;
+	}
+
+	public int getTotalDeCategorias() {
+		return totalDeCategorias;
 	}
 }

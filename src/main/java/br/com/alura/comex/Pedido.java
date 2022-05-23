@@ -1,10 +1,7 @@
 package br.com.alura.comex;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.text.NumberFormat;
 import java.time.LocalDate;
-import java.util.Locale;
 
 public class Pedido {
 
@@ -18,10 +15,11 @@ public class Pedido {
 	private BigDecimal montanteDeVendas = BigDecimal.ZERO;
 	private Pedido pedidoMaisBarato = null;
 	private Pedido pedidoMaisCaro = null;
-
+	private Formatacoes formatador = new Formatacoes();
 	private LocalDate data;
 
-	public Pedido() {}
+	public Pedido() {
+	}
 
 	public Pedido(String categoria, String produto, String cliente, BigDecimal preco, int quantidade, LocalDate data) {
 		this.categoria = categoria;
@@ -53,33 +51,31 @@ public class Pedido {
 		}
 		return false;
 	}
-
-	public void setValorTotal(Pedido pedidoAtual) {
-		this.montanteDeVendas = this.montanteDeVendas
-				.add(pedidoAtual.getPreco().multiply(new BigDecimal(pedidoAtual.getQuantidade())));
-	}
-
-	public String getValorTotal() {
-		return NumberFormat.getCurrencyInstance(new Locale("pt", "BR"))
-				.format(this.montanteDeVendas.setScale(2, RoundingMode.HALF_DOWN));	
-	}
-
-	public String getMaisBaratoQue() {
-		return NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(pedidoMaisBarato.getPreco()
-				.multiply(new BigDecimal(pedidoMaisBarato.getQuantidade())).setScale(2, RoundingMode.HALF_DOWN));
+	
+	public String pedidoMaisBaratoFormatado() {
+		return formatador.formatarPedidoMaisBarato(this.pedidoMaisBarato);
 	}
 
 	public Pedido getPedidoMaisBarato() {
 		return this.pedidoMaisBarato;
 	}
 
-	public String getMaisCaroQue() {
-		return NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(pedidoMaisCaro.getPreco()
-				.multiply(new BigDecimal(pedidoMaisCaro.getQuantidade())).setScale(2, RoundingMode.HALF_DOWN));
+	public String pedidoMaisCaroQueFormatado() {
+		return formatador.formatarPedidoMaisCaro(this.pedidoMaisCaro);
 	}
-	
+
 	public Pedido getPedidoMaisCaro() {
 		return this.pedidoMaisCaro;
+	}
+
+	public String valorTotalFormatado() {
+		String vtFormatado = formatador.formatarValorTotal(this.montanteDeVendas);
+		return vtFormatado;
+	}
+	
+	public BigDecimal getValorTotal(Pedido pedidoAtual) {
+		return this.montanteDeVendas = this.montanteDeVendas
+				.add(pedidoAtual.getPreco().multiply(new BigDecimal(pedidoAtual.getQuantidade())));
 	}
 
 	public String getCategoria() {
