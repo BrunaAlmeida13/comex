@@ -44,14 +44,12 @@ public class RelatorioSintetico {
 		}
 	}
 
-	
-
 	public void imprimeRelatorio() {
 		this.geraRelatorio();
 		System.out.println("#### RELATÓRIO DE VALORES TOTAIS");
 		System.out.printf("- TOTAL DE PEDIDOS REALIZADOS: %s\n", calculosDosPedidos.getTotalDePedidosRealizados());
-		System.out.printf("- TOTAL DE PRODUTOS VENDIDOS: %s\n", this.totalDeProdutosVendidos);
-		System.out.printf("- TOTAL DE CATEGORIAS: %s\n", totalDeCategorias);
+		System.out.printf("- TOTAL DE PRODUTOS VENDIDOS: %s\n", this.getTotalDeProdutosVendidos());
+		System.out.printf("- TOTAL DE CATEGORIAS: %s\n", this.getTotalDeCategorias());
 		System.out.printf("- MONTANTE DE VENDAS: %s\n", calculosDosPedidos.valorTotalFormatado());
 		System.out.printf("- PEDIDO MAIS BARATO: %s (%s)\n", calculosDosPedidos.pedidoMaisBaratoFormatado(),
 				calculosDosPedidos.getPedidoMaisBarato().getProduto());
