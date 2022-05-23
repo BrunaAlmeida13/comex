@@ -1,9 +1,11 @@
-package br.com.alura.comex;
+package br.com.alura.comex.formatador;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.NumberFormat;
 import java.util.Locale;
+
+import br.com.alura.comex.pedido.Pedido;
 
 public class Formatacoes {
 

@@ -10,6 +10,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import br.com.alura.comex.pedido.Pedido;
+
 public class ProcessadorDeCsv {
 
 	private ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
