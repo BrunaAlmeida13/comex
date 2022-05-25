@@ -5,6 +5,7 @@ import java.util.HashSet;
 
 import br.com.alura.comex.pedido.CalculosDosPedidos;
 import br.com.alura.comex.pedido.Pedido;
+import br.com.alura.comex.processadores.ProcessadorDeCsv;
 
 public class RelatorioSintetico {
 
