@@ -2,6 +2,8 @@ package br.com.alura.comex.pedido;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
 
 public class Pedido {
 
@@ -56,4 +58,12 @@ public class Pedido {
 				+ '\'' + ", preco=" + preco + ", quantidade=" + quantidade + ", data=" + data + '}';
 	}
 
+	public BigDecimal getValorTotal() {
+		return getPreco().multiply(new BigDecimal(getQuantidade()));
+	}
+
+	public static BigDecimal getMontanteCliente(Map.Entry<String, List<Pedido>> cliente) {
+		return cliente.getValue().stream().map(pedido -> pedido.getValorTotal()).reduce(BigDecimal.ZERO,
+				BigDecimal::add);
+	}
 }
