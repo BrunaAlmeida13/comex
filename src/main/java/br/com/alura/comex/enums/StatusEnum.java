@@ -1,10 +1,10 @@
 package br.com.alura.comex.enums;
 
-public enum Status {
+public enum StatusEnum {
 	ATIVA(1), //tornar padrão
 	INATIVA(0);
 
-	Status(int i) {
+	StatusEnum(int i) {
 		
 	}
 }
