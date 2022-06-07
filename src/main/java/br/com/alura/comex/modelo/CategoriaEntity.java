@@ -12,11 +12,12 @@ import br.com.alura.comex.enums.Status;
 @Table(name = "Categoria")
 public class CategoriaEntity {
 
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 	private String nome;
 	private Enum<Status> status;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -24,12 +25,15 @@ public class CategoriaEntity {
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public Enum<Status> getStatus() {
 		return status;
 	}
+
 	public void setStatus(Enum<Status> status) {
 		this.status = status;
 	}
