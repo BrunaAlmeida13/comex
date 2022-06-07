@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import br.com.alura.comex.enums.Status;
 
 @Entity
-@Table(name = "categoria")
+@Table(name = "Categoria")
 public class CategoriaEntity {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,9 +20,7 @@ public class CategoriaEntity {
 	public Long getId() {
 		return id;
 	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+
 	public String getNome() {
 		return nome;
 	}
