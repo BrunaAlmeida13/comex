@@ -1,6 +1,8 @@
 package br.com.alura.comex.modelo;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,7 +18,9 @@ public class CategoriaEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String nome;
-	private Enum<StatusEnum> status;
+	
+	@Enumerated(EnumType.STRING)
+	private StatusEnum status;
 
 	public Long getId() {
 		return id;
@@ -30,11 +34,11 @@ public class CategoriaEntity {
 		this.nome = nome;
 	}
 
-	public Enum<StatusEnum> getStatus() {
+	public StatusEnum getStatus() {
 		return status;
 	}
 
-	public void setStatus(Enum<StatusEnum> status) {
+	public void setStatus(StatusEnum status) {
 		this.status = status;
 	}
 }

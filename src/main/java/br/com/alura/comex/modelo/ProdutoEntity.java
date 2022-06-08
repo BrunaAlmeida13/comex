@@ -1,9 +1,11 @@
 package br.com.alura.comex.modelo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,7 +19,11 @@ public class ProdutoEntity {
 	private String descricao;
 	private double preco_unitario;
 	private int quantidade_estoque;
-	// TODO FK id_categoria
+	
+	@ManyToOne
+	@Column(name = "id_categoria")
+	private CategoriaEntity categoria;
+	
 
 	public String getNome() {
 		return nome;

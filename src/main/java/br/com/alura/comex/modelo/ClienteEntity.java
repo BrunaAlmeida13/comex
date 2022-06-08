@@ -22,7 +22,8 @@ public class ClienteEntity {
 	private String bairro;
 	private String cidade;
 	private String estado;
-
+	//TODO separar endereco | @ManyToOne
+	
 	public String getNome() {
 		return nome;
 	}
