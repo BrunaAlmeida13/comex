@@ -24,17 +24,17 @@ public class PedidoEntity {
 	private Long id;
 	private Date data;
 	private double desconto;
-	
+
 	@Enumerated(EnumType.STRING)
 	private TipoDescontoEnum tipo_desconto;
-	
+
 	@OneToMany
 	private ItemDePedidoEntity item_pedido;
-	
+
 	@ManyToOne
 	@Column(name = "id_cliente")
 	private ClienteEntity cliente;
-	
+
 	public Date getData() {
 		return data;
 	}

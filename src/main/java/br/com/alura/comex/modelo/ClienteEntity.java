@@ -22,8 +22,24 @@ public class ClienteEntity {
 	private String bairro;
 	private String cidade;
 	private String estado;
-	//TODO separar endereco | @ManyToOne
-	
+	// TODO separar endereco | @ManyToOne
+
+	public ClienteEntity(String nome, long cpf, String telefone, String rua, String numero, String complemento,
+			String bairro, String cidade, String estado) {
+		this.nome = nome;
+		this.cpf = cpf;
+		this.telefone = telefone;
+		this.rua = rua;
+		this.numero = numero;
+		this.complemento = complemento;
+		this.bairro = bairro;
+		this.cidade = cidade;
+		this.estado = estado;
+	}
+
+	public ClienteEntity() {
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -36,6 +52,7 @@ public class ClienteEntity {
 		return cpf;
 	}
 
+	// TODO implementar validação do cpf
 	public void setCpf(long cpf) {
 		this.cpf = cpf;
 	}

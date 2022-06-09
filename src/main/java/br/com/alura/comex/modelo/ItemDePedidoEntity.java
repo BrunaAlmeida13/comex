@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import br.com.alura.comex.enums.TipoDescontoEnum;
@@ -23,18 +22,18 @@ public class ItemDePedidoEntity {
 	private double preco_unitario;
 	private int quantidade;
 	private double desconto;
-	
+
 	@Enumerated(EnumType.STRING)
 	private TipoDescontoEnum tipo_desconto;
 
 	@ManyToOne
 	@Column(name = "pedido_id")
 	private PedidoEntity pedido;
-	
+
 	@ManyToOne
 	@Column(name = "produto_id")
 	private ProdutoEntity produto;
-	
+
 	public double getPreco_unitario() {
 		return preco_unitario;
 	}
