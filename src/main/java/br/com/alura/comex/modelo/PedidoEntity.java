@@ -21,7 +21,7 @@ public class PedidoEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	private Date data;
 	private double desconto;
 	

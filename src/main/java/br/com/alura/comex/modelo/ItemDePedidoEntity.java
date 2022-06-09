@@ -19,7 +19,7 @@ public class ItemDePedidoEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	private double preco_unitario;
 	private int quantidade;
 	private double desconto;

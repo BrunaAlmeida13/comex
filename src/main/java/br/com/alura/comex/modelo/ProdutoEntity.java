@@ -14,7 +14,7 @@ public class ProdutoEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	private String nome;
 	private String descricao;
 	private double preco_unitario;
