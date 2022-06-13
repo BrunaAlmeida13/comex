@@ -4,7 +4,7 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class EnderecoEntity {
-
+	
 	private String rua;
 	private String numero;
 	private String complemento;
