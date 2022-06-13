@@ -1,5 +1,8 @@
 package br.com.alura.comex.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -33,6 +36,32 @@ public class ItemDePedidoEntity {
 	@ManyToOne
 	@Column(name = "produto_id")
 	private ProdutoEntity produto;
+
+	public ItemDePedidoEntity() {
+	}
+
+	public ItemDePedidoEntity(int quantidade, PedidoEntity pedido, ProdutoEntity produto) {
+		this.quantidade = quantidade;
+		this.pedido = pedido;
+		this.produto = produto;
+		this.preco_unitario = produto.getPreco_unitario();
+	}
+
+	public PedidoEntity getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(PedidoEntity pedido) {
+		this.pedido = pedido;
+	}
+
+	public ProdutoEntity getProduto() {
+		return produto;
+	}
+
+	public void setProduto(ProdutoEntity produto) {
+		this.produto = produto;
+	}
 
 	public double getPreco_unitario() {
 		return preco_unitario;

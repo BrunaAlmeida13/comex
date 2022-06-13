@@ -1,7 +1,11 @@
 package br.com.alura.comex.modelo;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -22,24 +26,36 @@ public class PedidoEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Date data;
+	private LocalDate data = LocalDate.now();
 	private double desconto;
 
 	@Enumerated(EnumType.STRING)
 	private TipoDescontoEnum tipo_desconto;
 
-	@OneToMany
-	private ItemDePedidoEntity item_pedido;
+	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+	private List<ItemDePedidoEntity> item_pedido = new ArrayList<>();
 
 	@ManyToOne
 	@Column(name = "id_cliente")
 	private ClienteEntity cliente;
 
-	public Date getData() {
+	public PedidoEntity() {
+	}
+
+	public PedidoEntity(ClienteEntity cliente) {
+		this.cliente = cliente;
+	}
+	
+	public void adicionarItem(ItemDePedidoEntity item) {
+		item.setPedido(this);
+		this.item_pedido.add(item);
+	}
+	
+	public LocalDate getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 
