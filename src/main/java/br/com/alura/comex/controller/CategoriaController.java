@@ -13,7 +13,7 @@ import br.com.alura.comex.modelo.CategoriaEntity;
 public class CategoriaController {
 
 	@RequestMapping("/api/categorias")
-	public List<CategoriaDto> nome() {
+	public List<CategoriaDto> lista() {
 		CategoriaEntity categoria = new CategoriaEntity("Nome da Categoria");
 
 		// TODO validacao

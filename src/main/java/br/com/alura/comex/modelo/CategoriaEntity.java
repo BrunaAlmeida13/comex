@@ -25,6 +25,11 @@ public class CategoriaEntity {
 	public CategoriaEntity() {
 	}
 
+	public CategoriaEntity(String nome, StatusEnum status) {
+		this.nome = nome;
+		this.status = status;
+	}
+	
 	public CategoriaEntity(String nome) {
 		this.nome = nome;
 	}

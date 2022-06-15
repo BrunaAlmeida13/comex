@@ -19,12 +19,32 @@ public class ProdutoEntity {
 	private String descricao;
 	private double preco_unitario;
 	private int quantidade_estoque;
+	private Long categoriaId;
 	
 	@ManyToOne
 	@Column(name = "id_categoria")
 	private CategoriaEntity categoria;
 	
+	public ProdutoEntity() {
+	}
 
+	public ProdutoEntity(String nome, String descricao, double preco_unitario, int quantidade_estoque,
+			CategoriaEntity categoria) {
+		this.nome = nome;
+		this.descricao = descricao;
+		this.preco_unitario = preco_unitario;
+		this.quantidade_estoque = quantidade_estoque;
+		this.categoria = categoria;
+	}
+
+	public ProdutoEntity(String nome, String descricao, double preco_unitario, int quantidade_estoque, Long categoriaId) {
+		this.nome = nome;
+		this.descricao = descricao;
+		this.preco_unitario = preco_unitario;
+		this.quantidade_estoque = quantidade_estoque;
+		//this.categoriaId = categoria.getId();
+		this.categoriaId = (long) 1; //para teste sem BD
+	}
 	public String getNome() {
 		return nome;
 	}
@@ -59,5 +79,9 @@ public class ProdutoEntity {
 
 	public Long getId() {
 		return id;
+	}
+
+	public Long getCategoriaId() {
+		return categoriaId;
 	}
 }
