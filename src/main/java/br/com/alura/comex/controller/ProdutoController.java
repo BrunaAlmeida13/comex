@@ -15,7 +15,8 @@ public class ProdutoController {
 	
 	@RequestMapping("/api/produtos")
 	public List<ProdutoDto> lista() {
-		Long categoriaId = (long) 1;
+		//CategoriaEntity categoria = new CategoriaEntity();
+		Long categoriaId = (long) 1; // categoria.getId();
 		ProdutoEntity produto = new ProdutoEntity("Nome do Produto", "descricao", 20.0, 2, categoriaId);
 		
 		// TODO validacao
