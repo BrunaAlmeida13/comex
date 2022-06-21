@@ -6,13 +6,13 @@ import java.util.stream.Collectors;
 import br.com.alura.comex.modelo.CategoriaEntity;
 
 public class CategoriaDto {
-	
+
 	private String nome;
 
-	public CategoriaDto (CategoriaEntity categoria) {
+	public CategoriaDto(CategoriaEntity categoria) {
 		this.nome = categoria.getNome();
 	}
-	
+
 	public String getNome() {
 		return nome;
 	}

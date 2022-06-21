@@ -32,22 +32,22 @@ public class PedidoEntity {
 	@Enumerated(EnumType.STRING)
 	private TipoDescontoEnum tipo_desconto;
 
-	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "pedido_id", cascade = CascadeType.ALL)
 	private List<ItemDePedidoEntity> item_pedido = new ArrayList<>();
 
 	@ManyToOne
-	@Column(name = "id_cliente")
-	private ClienteEntity cliente;
+	//@Column(name = "id_cliente")
+	private ClienteEntity id_cliente;
 
 	public PedidoEntity() {
 	}
 
 	public PedidoEntity(ClienteEntity cliente) {
-		this.cliente = cliente;
+		this.id_cliente = cliente;
 	}
 	
 	public void adicionarItem(ItemDePedidoEntity item) {
-		item.setPedido(this);
+		item.setPedidoId(this);
 		this.item_pedido.add(item);
 	}
 	

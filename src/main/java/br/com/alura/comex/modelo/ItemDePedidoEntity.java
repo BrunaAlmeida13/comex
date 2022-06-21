@@ -29,38 +29,38 @@ public class ItemDePedidoEntity {
 	@Enumerated(EnumType.STRING)
 	private TipoDescontoEnum tipo_desconto;
 
+	//@Column(name = "pedido_id")
 	@ManyToOne
-	@Column(name = "pedido_id")
-	private PedidoEntity pedido;
+	private PedidoEntity pedido_id;
 
+	//@Column(name = "produto_id")
 	@ManyToOne
-	@Column(name = "produto_id")
-	private ProdutoEntity produto;
+	private ProdutoEntity produto_id;
 
 	public ItemDePedidoEntity() {
 	}
 
 	public ItemDePedidoEntity(int quantidade, PedidoEntity pedido, ProdutoEntity produto) {
 		this.quantidade = quantidade;
-		this.pedido = pedido;
-		this.produto = produto;
+		this.pedido_id = pedido;
+		this.produto_id = produto;
 		this.preco_unitario = produto.getPreco_unitario();
 	}
 
 	public PedidoEntity getPedido() {
-		return pedido;
+		return pedido_id;
 	}
 
-	public void setPedido(PedidoEntity pedido) {
-		this.pedido = pedido;
+	public void setPedidoId(PedidoEntity pedido) {
+		this.pedido_id = pedido;
 	}
 
 	public ProdutoEntity getProduto() {
-		return produto;
+		return produto_id;
 	}
 
 	public void setProduto(ProdutoEntity produto) {
-		this.produto = produto;
+		this.produto_id = produto;
 	}
 
 	public double getPreco_unitario() {

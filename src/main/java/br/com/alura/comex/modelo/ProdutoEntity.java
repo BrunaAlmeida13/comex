@@ -22,8 +22,8 @@ public class ProdutoEntity {
 	private Long categoriaId;
 	
 	@ManyToOne
-	@Column(name = "id_categoria")
-	private CategoriaEntity categoria;
+	//@Column(name = "id_categoria")
+	private CategoriaEntity id_categoria;
 	
 	public ProdutoEntity() {
 	}
@@ -34,7 +34,7 @@ public class ProdutoEntity {
 		this.descricao = descricao;
 		this.preco_unitario = preco_unitario;
 		this.quantidade_estoque = quantidade_estoque;
-		this.categoria = categoria;
+		this.id_categoria = categoria;
 	}
 
 	public ProdutoEntity(String nome, String descricao, double preco_unitario, int quantidade_estoque, Long categoriaId) {

@@ -20,7 +20,7 @@ public class CategoriaEntity {
 	private String nome;
 
 	@Enumerated(EnumType.STRING)
-	private StatusEnum status;
+	private StatusEnum status = StatusEnum.ATIVA;
 
 	public CategoriaEntity() {
 	}
