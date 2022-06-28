@@ -2,11 +2,9 @@ package br.com.alura.comex.modelo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -36,7 +34,7 @@ public class PedidoEntity {
 	private List<ItemDePedidoEntity> item_pedido = new ArrayList<>();
 
 	@ManyToOne
-	//@Column(name = "id_cliente")
+	// @Column(name = "id_cliente")
 	private ClienteEntity id_cliente;
 
 	public PedidoEntity() {
@@ -45,12 +43,12 @@ public class PedidoEntity {
 	public PedidoEntity(ClienteEntity cliente) {
 		this.id_cliente = cliente;
 	}
-	
+
 	public void adicionarItem(ItemDePedidoEntity item) {
 		item.setPedidoId(this);
 		this.item_pedido.add(item);
 	}
-	
+
 	public LocalDate getData() {
 		return data;
 	}

@@ -3,6 +3,8 @@ package br.com.alura.comex.controller.dto;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Page;
+
 import br.com.alura.comex.modelo.CategoriaEntity;
 
 public class CategoriaDto {
@@ -17,7 +19,7 @@ public class CategoriaDto {
 		return nome;
 	}
 
-	public static List<CategoriaDto> converter(List<CategoriaEntity> categorias) {
-		return categorias.stream().map(CategoriaDto::new).collect(Collectors.toList());
+	public static Page<CategoriaDto> converter(Page<CategoriaEntity> categorias) {
+		return categorias.map(CategoriaDto::new);
 	}
 }

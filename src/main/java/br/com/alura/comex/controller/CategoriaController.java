@@ -1,13 +1,14 @@
 package br.com.alura.comex.controller;
 
 import java.net.URI;
-import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -32,13 +34,14 @@ public class CategoriaController {
 	private CategoriaRepository categoriaRepository;
 
 	@GetMapping
-	public List<CategoriaDto> listar(Long id) {
+	public Page<CategoriaDto> listar(@RequestParam(required = false) Long id, Pageable paginacao) {
+
 		if (id != null) {
-			List<CategoriaEntity> categorias = categoriaRepository.findAllById(id);
+			Page<CategoriaEntity> categorias = categoriaRepository.findAllById(id, paginacao);
 			return CategoriaDto.converter(categorias);
 		}
 
-		List<CategoriaEntity> categorias = categoriaRepository.findAll();
+		Page<CategoriaEntity> categorias = categoriaRepository.findAll(paginacao);
 		// TODO validacao
 		return CategoriaDto.converter(categorias);
 	}

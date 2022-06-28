@@ -1,9 +1,5 @@
 package br.com.alura.comex.modelo;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -29,11 +25,11 @@ public class ItemDePedidoEntity {
 	@Enumerated(EnumType.STRING)
 	private TipoDescontoEnum tipo_desconto;
 
-	//@Column(name = "pedido_id")
+	// @Column(name = "pedido_id")
 	@ManyToOne
 	private PedidoEntity pedido_id;
 
-	//@Column(name = "produto_id")
+	// @Column(name = "produto_id")
 	@ManyToOne
 	private ProdutoEntity produto_id;
 

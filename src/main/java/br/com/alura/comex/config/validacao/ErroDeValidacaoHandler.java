@@ -22,18 +22,19 @@ public class ErroDeValidacaoHandler {
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public List<ErroDeFormularioDto> handle(MethodArgumentNotValidException exception) {
-		
+
 		List<ErroDeFormularioDto> dto = new ArrayList<ErroDeFormularioDto>();
-		
+
 		List<FieldError> fieldErros = exception.getBindingResult().getFieldErrors();
 		fieldErros.forEach(e -> {
-			
+
+			@SuppressWarnings("unused")
 			String mensagem = messageSource.getMessage(e, LocaleContextHolder.getLocale());
 			ErroDeFormularioDto erro = new ErroDeFormularioDto(e.getField(), null);
 			dto.add(erro);
-			
+
 		});
-		
+
 		return dto;
 	}
 }
