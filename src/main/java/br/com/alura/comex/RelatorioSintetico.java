@@ -22,6 +22,7 @@ public class RelatorioSintetico {
 		ArrayList<Pedido> pedidos = new ProcessadorDeCsv().registrarPedidos();
 
 		HashSet<String> categoriasProcessadas = new HashSet<String>();
+		calculosDosPedidos.calcularMontante(pedidos);
 
 		for (int i = 0; i < pedidos.size(); i++) {
 			Pedido pedidoAtual = pedidos.get(i);
@@ -31,8 +32,6 @@ public class RelatorioSintetico {
 
 			calculosDosPedidos.isMaisBaratoQue(pedidoAtual);
 			calculosDosPedidos.isMaisCaroQue(pedidoAtual);
-
-			calculosDosPedidos.getValorTotal(pedidoAtual);
 
 			this.totalDeProdutosVendidos += pedidoAtual.getQuantidade();
 			calculosDosPedidos.totalDePedidosRealizados(pedidoAtual);
