@@ -29,22 +29,22 @@ public class RelatorioSintetico {
 		calculosDosPedidos.calcularMontante(pedidos);
 		calculosDosPedidos.definirMaisBarato(pedidos);
 		calculosDosPedidos.definirMaisCaro(pedidos);
+		calculosDosPedidos.contarCategorias(pedidos);
 		for (int i = 0; i < pedidos.size(); i++) {
 			Pedido pedidoAtual = pedidos.get(i);
 
 			if (pedidoAtual == null)
 				break;
 
-			//calculosDosPedidos.isMaisBaratoQue(pedidoAtual);
-			//calculosDosPedidos.isMaisCaroQue(pedidoAtual);
-
 			this.totalDeProdutosVendidos += pedidoAtual.getQuantidade();
 			calculosDosPedidos.totalDePedidosRealizados(pedidoAtual);
-
+			/*
 			if (!categoriasProcessadas.contains(pedidoAtual.getCategoria())) {
 				totalDeCategorias++;
 				categoriasProcessadas.add(pedidoAtual.getCategoria());
 			}
+
+			 */
 		}
 	}
 
@@ -53,7 +53,7 @@ public class RelatorioSintetico {
 		System.out.println("#### RELATÓRIO DE VALORES TOTAIS");
 		System.out.printf("- TOTAL DE PEDIDOS REALIZADOS: %s\n", calculosDosPedidos.getTotalDePedidosRealizados());
 		System.out.printf("- TOTAL DE PRODUTOS VENDIDOS: %s\n", this.getTotalDeProdutosVendidos());
-		System.out.printf("- TOTAL DE CATEGORIAS: %s\n", this.getTotalDeCategorias());
+		System.out.printf("- TOTAL DE CATEGORIAS: %s\n", calculosDosPedidos.getTotalDeCategorias());
 		System.out.printf("- MONTANTE DE VENDAS: %s\n", calculosDosPedidos.valorTotalFormatado());
 		System.out.printf("- PEDIDO MAIS BARATO: %s (%s)\n", calculosDosPedidos.pedidoMaisBaratoFormatado(),
 				calculosDosPedidos.getPedidoMaisBarato().getProduto());

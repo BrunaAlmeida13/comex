@@ -1,9 +1,8 @@
 package br.com.alura.comex.pedido;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import br.com.alura.comex.formatador.Formatacoes;
 
@@ -13,6 +12,8 @@ public class CalculosDosPedidos {
 	protected Pedido pedidoMaisBarato = null;
 	protected Pedido pedidoMaisCaro = null;
 	private int totalDePedidosRealizados = 0;
+
+	private int totalDeCategorias = 0;
 	
 	private Formatacoes formatador = new Formatacoes();
 
@@ -37,6 +38,10 @@ public class CalculosDosPedidos {
 
 		this.pedidoMaisCaro = pedidos.stream().max(Comparator.comparing(Pedido::getValorTotal)).orElseThrow(NoSuchFieldException::new);
 
+	}
+
+	public void contarCategorias(ArrayList<Pedido> pedidos){
+		this.totalDeCategorias = pedidos.stream().collect(Collectors.groupingBy(Pedido::getCategoria, Collectors.counting())).size();
 	}
 	public boolean isMaisCaroQue(Pedido pedidoAtual) {
 		if (pedidoMaisCaro == null
@@ -84,5 +89,9 @@ public class CalculosDosPedidos {
 	
 	public int getTotalDePedidosRealizados() {
 		return this.totalDePedidosRealizados;
+	}
+
+	public int getTotalDeCategorias() {
+		return totalDeCategorias;
 	}
 }
