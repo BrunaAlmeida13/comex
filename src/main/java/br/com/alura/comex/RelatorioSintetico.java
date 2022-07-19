@@ -1,6 +1,7 @@
 package br.com.alura.comex;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 
 import br.com.alura.comex.pedido.CalculosDosPedidos;
@@ -9,29 +10,33 @@ import br.com.alura.comex.pedido.Pedido;
 public class RelatorioSintetico {
 
 	Pedido pedido = new Pedido();
+	Pedido minValor = new Pedido();
 	CalculosDosPedidos calculosDosPedidos = new CalculosDosPedidos();
 
 	private int totalDeProdutosVendidos = 0;
 	private int totalDeCategorias = 0;
 
-	public RelatorioSintetico() {
+	public RelatorioSintetico() throws NoSuchFieldException {
 		this.imprimeRelatorio(); 
 	}
 	
-	private void geraRelatorio() {
+	private void geraRelatorio() throws NoSuchFieldException {
 		ArrayList<Pedido> pedidos = new ProcessadorDeCsv().registrarPedidos();
+
+
 
 		HashSet<String> categoriasProcessadas = new HashSet<String>();
 		calculosDosPedidos.calcularMontante(pedidos);
-
+		calculosDosPedidos.definirMaisBarato(pedidos);
+		calculosDosPedidos.definirMaisCaro(pedidos);
 		for (int i = 0; i < pedidos.size(); i++) {
 			Pedido pedidoAtual = pedidos.get(i);
 
 			if (pedidoAtual == null)
 				break;
 
-			calculosDosPedidos.isMaisBaratoQue(pedidoAtual);
-			calculosDosPedidos.isMaisCaroQue(pedidoAtual);
+			//calculosDosPedidos.isMaisBaratoQue(pedidoAtual);
+			//calculosDosPedidos.isMaisCaroQue(pedidoAtual);
 
 			this.totalDeProdutosVendidos += pedidoAtual.getQuantidade();
 			calculosDosPedidos.totalDePedidosRealizados(pedidoAtual);
@@ -43,7 +48,7 @@ public class RelatorioSintetico {
 		}
 	}
 
-	public void imprimeRelatorio() {
+	public void imprimeRelatorio() throws NoSuchFieldException {
 		this.geraRelatorio();
 		System.out.println("#### RELATÓRIO DE VALORES TOTAIS");
 		System.out.printf("- TOTAL DE PEDIDOS REALIZADOS: %s\n", calculosDosPedidos.getTotalDePedidosRealizados());

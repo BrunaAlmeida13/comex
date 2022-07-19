@@ -2,6 +2,7 @@ package br.com.alura.comex.pedido;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import br.com.alura.comex.formatador.Formatacoes;
@@ -14,6 +15,8 @@ public class CalculosDosPedidos {
 	private int totalDePedidosRealizados = 0;
 	
 	private Formatacoes formatador = new Formatacoes();
+
+	Double pedidoCaro;
 	
 	public boolean isMaisBaratoQue(Pedido pedidoAtual) {
 		if (this.pedidoMaisBarato == null || pedidoAtual.getPreco()
@@ -26,6 +29,15 @@ public class CalculosDosPedidos {
 		return false;
 	}
 
+	public void definirMaisBarato(ArrayList<Pedido> pedidos) throws NoSuchFieldException {
+		this.pedidoMaisBarato = pedidos.stream().min(Comparator.comparing(Pedido::getPreco)).orElseThrow(NoSuchFieldException::new);
+	}
+
+	public void definirMaisCaro(ArrayList<Pedido> pedidos) throws NoSuchFieldException{
+
+		this.pedidoMaisCaro = pedidos.stream().max(Comparator.comparing(Pedido::getValorTotal)).orElseThrow(NoSuchFieldException::new);
+
+	}
 	public boolean isMaisCaroQue(Pedido pedidoAtual) {
 		if (pedidoMaisCaro == null
 				|| pedidoAtual.getPreco().multiply(new BigDecimal(pedidoAtual.getQuantidade())).compareTo(
