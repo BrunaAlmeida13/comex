@@ -1,6 +1,8 @@
 package br.com.alura.comex.pedido;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.alura.comex.formatador.Formatacoes;
 
@@ -55,12 +57,13 @@ public class CalculosDosPedidos {
 		String vtFormatado = formatador.formatarValorTotal(this.montanteDeVendas);
 		return vtFormatado;
 	}
-	
-	public BigDecimal getValorTotal(Pedido pedidoAtual) {
-		return this.montanteDeVendas = this.montanteDeVendas
-				.add(pedidoAtual.getPreco().multiply(new BigDecimal(pedidoAtual.getQuantidade())));
+
+	public void calcularMontante(ArrayList<Pedido> pedidos){
+		pedidos.stream().forEach(p -> {
+			this.montanteDeVendas = this.montanteDeVendas.add(p.getPreco().multiply(new BigDecimal(p.getQuantidade())));
+		});
 	}
-	
+
 	public int totalDePedidosRealizados(Pedido pedidoAtual) {
 		if(pedidoAtual != null)
 			return this.totalDePedidosRealizados++;
