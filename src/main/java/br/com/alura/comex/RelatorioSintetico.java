@@ -8,47 +8,27 @@ import br.com.alura.comex.pedido.Pedido;
 
 public class RelatorioSintetico {
 
-	Pedido pedido = new Pedido();
-	Pedido minValor = new Pedido();
 	CalculosDosPedidos calculosDosPedidos = new CalculosDosPedidos();
-
-	private int totalDeCategorias = 0;
-
+	private ArrayList<Pedido> pedidos = new ProcessadorDeCsv().registrarPedidos();
 	public RelatorioSintetico() throws NoSuchFieldException {
 		this.imprimeRelatorio();
 	}
 
 	private void geraRelatorio() throws NoSuchFieldException {
-		ArrayList<Pedido> pedidos = new ProcessadorDeCsv().registrarPedidos();
-
-		HashSet<String> categoriasProcessadas = new HashSet<String>();
-
-		calculosDosPedidos.calcularMontante(pedidos);
-		calculosDosPedidos.definirMaisBarato(pedidos);
-		calculosDosPedidos.definirMaisCaro(pedidos);
-
-		calculosDosPedidos.contarCategorias(pedidos);
-
-		calculosDosPedidos.contarTotalProdutoVendidos(pedidos);
-
-		calculosDosPedidos.calcularTotalDePedidosRealizados(pedidos);
-
-		for (int i = 0; i < pedidos.size(); i++) {
-			Pedido pedidoAtual = pedidos.get(i);
-
-			if (pedidoAtual == null)
-				break;
-
-
-
-
-			//calculosDosPedidos.totalDePedidosRealizados(pedidoAtual);
-
-		}
+		calculosDosPedidos.calcularMontante(this.pedidos);
+		calculosDosPedidos.definirMaisBarato(this.pedidos);
+		calculosDosPedidos.definirMaisCaro(this.pedidos);
+		calculosDosPedidos.contarCategorias(this.pedidos);
+		calculosDosPedidos.contarTotalProdutoVendidos(this.pedidos);
+		calculosDosPedidos.calcularTotalDePedidosRealizados(this.pedidos);
 	}
 
+	private void geraRelatorioByCategoria() {
+	}
 	public void imprimeRelatorio() throws NoSuchFieldException {
 		this.geraRelatorio();
+		this.geraRelatorioByCategoria();
+
 		System.out.println("#### RELATÓRIO DE VALORES TOTAIS");
 		System.out.printf("- TOTAL DE PEDIDOS REALIZADOS: %s\n", calculosDosPedidos.getTotalDePedidosRealizados());
 
