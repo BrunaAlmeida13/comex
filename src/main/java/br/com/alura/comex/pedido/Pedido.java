@@ -42,6 +42,9 @@ public class Pedido {
 		return preco;
 	}
 
+	public BigDecimal getValorTotal(){
+		return this.preco.multiply(new BigDecimal(this.quantidade));
+	}
 	public int getQuantidade() {
 		return quantidade;
 	}
