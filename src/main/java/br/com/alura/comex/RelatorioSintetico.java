@@ -31,6 +31,7 @@ public class RelatorioSintetico {
 
 		calculosDosPedidos.contarTotalProdutoVendidos(pedidos);
 
+		calculosDosPedidos.calcularTotalDePedidosRealizados(pedidos);
 
 		for (int i = 0; i < pedidos.size(); i++) {
 			Pedido pedidoAtual = pedidos.get(i);
@@ -41,7 +42,7 @@ public class RelatorioSintetico {
 
 
 
-			calculosDosPedidos.totalDePedidosRealizados(pedidoAtual);
+			//calculosDosPedidos.totalDePedidosRealizados(pedidoAtual);
 
 		}
 	}

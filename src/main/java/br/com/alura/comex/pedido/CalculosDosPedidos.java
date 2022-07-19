@@ -76,6 +76,10 @@ public class CalculosDosPedidos {
 		return 0;
 	}
 
+	public void calcularTotalDePedidosRealizados (ArrayList<Pedido> pedidos){
+		this.totalDePedidosRealizados = pedidos.size();
+	}
+
 	public int getTotalDePedidosRealizados() {
 		return this.totalDePedidosRealizados;
 	}
