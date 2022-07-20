@@ -2,9 +2,9 @@ package br.com.alura.comex.relatorios;
 
 import java.util.ArrayList;
 
-import br.com.alura.comex.ProcessadorDeCsv;
 import br.com.alura.comex.pedido.CalculosDosPedidos;
 import br.com.alura.comex.pedido.Pedido;
+import br.com.alura.comex.processadores.ProcessadorDeCsv;
 
 public class RelatorioSintetico {
 
