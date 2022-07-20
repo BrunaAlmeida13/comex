@@ -49,5 +49,9 @@ public class RelatorioSintetico {
 		System.out.println("#################\n");
 
 		relatorioPedidoMaisVendidos.geraRelatorioPedidosMaisVendidos();
+		
+		System.out.println("#################\n");
+		
+		relatorioCategoria.geraRelatorioProdutoMaisCaro();
 	}
 }
