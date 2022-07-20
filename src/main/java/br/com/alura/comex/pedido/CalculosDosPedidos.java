@@ -1,12 +1,10 @@
 package br.com.alura.comex.pedido;
 
 import java.math.BigDecimal;
-import java.util.*;
-import java.util.stream.Collectors;
-
 import java.util.ArrayList;
 import java.util.Comparator;
-
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import br.com.alura.comex.formatador.Formatacoes;
 
@@ -17,12 +15,9 @@ public class CalculosDosPedidos {
 	protected Pedido pedidoMaisCaro = null;
 	private int totalDePedidosRealizados = 0;
 
-
 	private int totalDeCategorias = 0;
 	
-
 	private int totalDeProdutosVendidos = 0;
-
 
 	private Formatacoes formatador = new Formatacoes();
 
@@ -35,9 +30,7 @@ public class CalculosDosPedidos {
 
 		this.pedidoMaisCaro = pedidos.stream().max(Comparator.comparing(Pedido::getValorTotal))
 				.orElseThrow(NoSuchFieldException::new);
-
 	}
-
 
 	public void contarCategorias(ArrayList<Pedido> pedidos){
 		this.totalDeCategorias = pedidos.stream().collect(Collectors.groupingBy(Pedido::getCategoria, Collectors.counting())).size();
@@ -84,9 +77,9 @@ public class CalculosDosPedidos {
 		return this.totalDePedidosRealizados;
 	}
 
-
 	public int getTotalDeCategorias() {
-		return totalDeCategorias;}
+		return totalDeCategorias;
+	}
 
 	public int getTotalDeProdutosVendidos() {
 		return this.totalDeProdutosVendidos;
@@ -95,6 +88,14 @@ public class CalculosDosPedidos {
 	public void contarTotalProdutoVendidos(ArrayList<Pedido> pedidos) {
 		int countForTotalProdutosVendidos = pedidos.stream().mapToInt(Pedido::getQuantidade).sum();
 		this.totalDeProdutosVendidos = countForTotalProdutosVendidos;
-
+	}
+	
+	public int somarQuantidadePorCategoria(ArrayList<Pedido> pedidos, String categoria) {
+		return pedidos.stream().filter(a -> a.getCategoria().equals(categoria)).mapToInt(Pedido::getQuantidade).sum();
+	}
+	
+	public BigDecimal calcularMontantePorCategoria(ArrayList<Pedido> pedidos, String categoria) {
+		Pedido pedido = pedidos.stream().filter(a -> a.getCategoria().equals(categoria)).findAny().orElse(null);
+		return pedidos.stream().filter(a -> a.getCategoria().equals(categoria)).map(Pedido::getValorTotal).reduce((x, y) -> x.add(y)).get();
 	}
 }
