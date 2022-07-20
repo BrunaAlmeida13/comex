@@ -8,6 +8,7 @@ import br.com.alura.comex.pedido.Pedido;
 
 public class RelatorioSintetico {
 
+	RelatorioPedidosMaisVendidos relatorioPedidoMaisVendidos = new RelatorioPedidosMaisVendidos();
 	RelatorioVendasPorCategoria relatorioCategoria = new RelatorioVendasPorCategoria();
 	CalculosDosPedidos calculosDosPedidos = new CalculosDosPedidos();
 	private ArrayList<Pedido> pedidos = new ProcessadorDeCsv().registrarPedidos();
@@ -26,6 +27,7 @@ public class RelatorioSintetico {
 	}
 
 	public void imprimeRelatorio() throws NoSuchFieldException {
+
 		this.geraRelatorio();
 
 		System.out.println("#### RELATÓRIO DE VALORES TOTAIS");
@@ -39,9 +41,13 @@ public class RelatorioSintetico {
 				calculosDosPedidos.getPedidoMaisBarato().getProduto());
 		System.out.printf("- PEDIDO MAIS CARO: %s (%s)\n", calculosDosPedidos.pedidoMaisCaroQueFormatado(),
 				calculosDosPedidos.getPedidoMaisCaro().getProduto());
-		
-		System.out.println("#################");
+
+		System.out.println("#################\n");
 
 		relatorioCategoria.geraRelatorioByCategoria();
+
+		System.out.println("#################\n");
+
+		relatorioPedidoMaisVendidos.geraRelatorioPedidosMaisVendidos();
 	}
 }
