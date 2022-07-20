@@ -26,6 +26,5 @@ public class RelatorioPedidosMaisVendidos {
 							+ v.getValue().entrySet().stream().collect(Collectors.toList()).get(0).getKey());
 					System.out.printf("QUANTIDADE: %s \n\n", v.getKey());
 				});
-
 	}
 }

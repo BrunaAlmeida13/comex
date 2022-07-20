@@ -14,8 +14,7 @@ public class RelatorioVendasPorCategoria {
 	CalculosDosPedidos calculosDosPedidos = new CalculosDosPedidos();
 	private ArrayList<Pedido> pedidos = new ProcessadorDeCsv().registrarPedidos();
 
-	public RelatorioVendasPorCategoria() {
-	}
+	public RelatorioVendasPorCategoria() {}
 
 	public void geraRelatorioByCategoria() {
 		pedidos.sort((a, b) -> a.getCategoria().compareTo(b.getCategoria()));
