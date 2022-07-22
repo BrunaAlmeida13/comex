@@ -4,16 +4,23 @@ import java.util.ArrayList;
 
 import br.com.alura.comex.pedido.CalculosDosPedidos;
 import br.com.alura.comex.pedido.Pedido;
+import br.com.alura.comex.processadores.ProcessadorDeArquivo;
 import br.com.alura.comex.processadores.ProcessadorDeCsv;
+import br.com.alura.comex.processadores.ProcessadorDeJson;
 
 public class RelatorioSintetico {
 
 	RelatorioPedidosMaisVendidos relatorioPedidoMaisVendidos = new RelatorioPedidosMaisVendidos();
 	RelatorioVendasPorCategoria relatorioCategoria = new RelatorioVendasPorCategoria();
 	CalculosDosPedidos calculosDosPedidos = new CalculosDosPedidos();
-	private ArrayList<Pedido> pedidos = new ProcessadorDeCsv().registrarPedidos();
+	private ArrayList<Pedido> pedidos = null;
 
 	public RelatorioSintetico() throws NoSuchFieldException {
+		ProcessadorDeArquivo processador = new ProcessadorDeArquivo(); 
+		//processador.setiProcessador(new ProcessadorDeCsv());
+		processador.setiProcessador(new ProcessadorDeJson());
+		this.pedidos = processador.execute();
+		
 		this.imprimeRelatorio();
 	}
 

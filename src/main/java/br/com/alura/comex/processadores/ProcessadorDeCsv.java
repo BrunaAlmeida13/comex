@@ -12,11 +12,12 @@ import java.util.Scanner;
 
 import br.com.alura.comex.pedido.Pedido;
 
-public class ProcessadorDeCsv {
+public class ProcessadorDeCsv implements IProcessadorDeArquivoStrategy {
 
 	private ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
-
-	public ArrayList<Pedido> registrarPedidos() {
+	
+	@Override
+	public ArrayList<Pedido> readFile() {
 		try {
 
 			URL recursoCSV = ClassLoader.getSystemResource("pedidos.csv");

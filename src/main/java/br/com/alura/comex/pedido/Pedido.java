@@ -3,6 +3,8 @@ package br.com.alura.comex.pedido;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Pedido {
 
 	private String categoria;
@@ -12,6 +14,7 @@ public class Pedido {
 	private BigDecimal preco;
 	private int quantidade;
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private LocalDate data;
 
 	public Pedido() {

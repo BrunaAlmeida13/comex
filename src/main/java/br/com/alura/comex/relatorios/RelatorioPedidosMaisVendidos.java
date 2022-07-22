@@ -7,14 +7,20 @@ import java.util.stream.Collectors;
 
 import br.com.alura.comex.pedido.CalculosDosPedidos;
 import br.com.alura.comex.pedido.Pedido;
+import br.com.alura.comex.processadores.ProcessadorDeArquivo;
 import br.com.alura.comex.processadores.ProcessadorDeCsv;
+import br.com.alura.comex.processadores.ProcessadorDeJson;
 
 public class RelatorioPedidosMaisVendidos {
 
 	CalculosDosPedidos calculosDosPedidos = new CalculosDosPedidos();
-	private ArrayList<Pedido> pedidos = new ProcessadorDeCsv().registrarPedidos();
+	private ArrayList<Pedido> pedidos = null;
 
 	public RelatorioPedidosMaisVendidos() {
+		ProcessadorDeArquivo processador = new ProcessadorDeArquivo(); 
+		//processador.setiProcessador(new ProcessadorDeCsv());
+		processador.setiProcessador(new ProcessadorDeJson());
+		this.pedidos = processador.execute();
 	}
 
 	public void geraRelatorioPedidosMaisVendidos() {
