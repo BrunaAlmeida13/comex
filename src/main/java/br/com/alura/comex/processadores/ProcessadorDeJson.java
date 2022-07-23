@@ -3,7 +3,6 @@ package br.com.alura.comex.processadores;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -33,7 +32,7 @@ public class ProcessadorDeJson implements IProcessadorDeArquivoStrategy{
 		return listaPedido;
 	}
 
-	private <T> Object readObjectFromJsonFile(Class<T> c, String fileName) throws IOException {
+	<T> Object readObjectFromJsonFile(Class<T> c, String fileName) throws IOException {
 		ObjectMapper om = new ObjectMapper();
 
 		om.registerModule(new JavaTimeModule());

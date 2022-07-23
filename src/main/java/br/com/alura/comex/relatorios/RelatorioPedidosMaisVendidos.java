@@ -10,6 +10,7 @@ import br.com.alura.comex.pedido.Pedido;
 import br.com.alura.comex.processadores.ProcessadorDeArquivo;
 import br.com.alura.comex.processadores.ProcessadorDeCsv;
 import br.com.alura.comex.processadores.ProcessadorDeJson;
+import br.com.alura.comex.processadores.ProcessadorDeXml;
 
 public class RelatorioPedidosMaisVendidos {
 
@@ -19,7 +20,8 @@ public class RelatorioPedidosMaisVendidos {
 	public RelatorioPedidosMaisVendidos() {
 		ProcessadorDeArquivo processador = new ProcessadorDeArquivo(); 
 		//processador.setiProcessador(new ProcessadorDeCsv());
-		processador.setiProcessador(new ProcessadorDeJson());
+		//processador.setiProcessador(new ProcessadorDeJson());
+		processador.setiProcessador(new ProcessadorDeXml());
 		this.pedidos = processador.execute();
 	}
 
