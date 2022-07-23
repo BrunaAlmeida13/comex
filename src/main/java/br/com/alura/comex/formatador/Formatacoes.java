@@ -9,10 +9,9 @@ import br.com.alura.comex.pedido.Pedido;
 
 public class Formatacoes {
 
-	public String formatarValorTotal(BigDecimal montanteDeVendas) {
-		return NumberFormat.getCurrencyInstance(new Locale("pt", "BR"))
-				.format(montanteDeVendas.setScale(2, RoundingMode.HALF_DOWN));
-	}
+	public static String formatarValorTotal(BigDecimal valor) {
+        return NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(valor);
+    }
 
 	public String formatarPedidoMaisBarato(Pedido pedidoMaisBarato) {
 		return NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(pedidoMaisBarato.getPreco()
@@ -23,4 +22,6 @@ public class Formatacoes {
 		return NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(pedidoMaisCaro.getPreco()
 				.multiply(new BigDecimal(pedidoMaisCaro.getQuantidade())).setScale(2, RoundingMode.HALF_DOWN));
 	}
+	
+	
 }
