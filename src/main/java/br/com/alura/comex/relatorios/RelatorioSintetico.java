@@ -18,9 +18,9 @@ public class RelatorioSintetico {
 
 	public RelatorioSintetico() throws NoSuchFieldException {
 		ProcessadorDeArquivo processador = new ProcessadorDeArquivo(); 
-		//processador.setiProcessador(new ProcessadorDeCsv());
+		processador.setiProcessador(new ProcessadorDeCsv());
 		//processador.setiProcessador(new ProcessadorDeJson());
-		processador.setiProcessador(new ProcessadorDeXml());
+		//processador.setiProcessador(new ProcessadorDeXml());
 		this.pedidos = processador.execute();
 		
 		this.imprimeRelatorio();
@@ -57,7 +57,7 @@ public class RelatorioSintetico {
 
 		System.out.println("#################\n");
 
-		relatorioPedidoMaisVendidos.geraRelatorioPedidosMaisVendidos();
+		relatorioPedidoMaisVendidos.apresentaRelatorio();
 		
 		System.out.println("#################\n");
 		

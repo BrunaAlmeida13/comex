@@ -9,7 +9,7 @@ import br.com.alura.comex.pedido.Pedido;
 
 public class Formatacoes {
 
-	public static String formatarValorTotal(BigDecimal valor) {
+	public String formatarValorTotal(BigDecimal valor) {
         return NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(valor);
     }
 

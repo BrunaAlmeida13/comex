@@ -19,9 +19,9 @@ public class RelatorioVendasPorCategoria {
 
 	public RelatorioVendasPorCategoria() {
 		ProcessadorDeArquivo processador = new ProcessadorDeArquivo(); 
-		//processador.setiProcessador(new ProcessadorDeCsv());
+		processador.setiProcessador(new ProcessadorDeCsv());
 		//processador.setiProcessador(new ProcessadorDeJson());
-		processador.setiProcessador(new ProcessadorDeXml());
+		//processador.setiProcessador(new ProcessadorDeXml());
 		this.pedidos = processador.execute();
 	}
 
