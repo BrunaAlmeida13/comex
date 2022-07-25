@@ -17,7 +17,10 @@ public class RelatorioPedidosMaisVendidos {
 
 	CalculosDosPedidos calculosDosPedidos = new CalculosDosPedidos();
 	private ArrayList<Pedido> pedidos = null;
-	List<Entry<Integer,Map<String,List<Pedido>>>> pedidosMaisVendidos;
+	private List<Entry<Integer,Map<String,List<Pedido>>>> pedidosMaisVendidos;
+	private List<Entry<Integer,Map<String,List<Pedido>>>> produtoMaisVendido;
+	String produto; 
+	int quantidade;
 
 	public RelatorioPedidosMaisVendidos() {
 		ProcessadorDeArquivo processador = new ProcessadorDeArquivo(); 
@@ -32,9 +35,8 @@ public class RelatorioPedidosMaisVendidos {
 				.collect(Collectors.groupingBy(Pedido::getQuantidade, Collectors.groupingBy(Pedido::getProduto)))
 				.entrySet().stream().sorted(Map.Entry.comparingByKey(Comparator.reverseOrder())).limit(3)
 				.collect(Collectors.toList());
-		return pedidosMaisVendidos;
 		
-		//
+		return pedidosMaisVendidos;
 	}
 	
 	public void apresentaRelatorio() {
@@ -44,5 +46,37 @@ public class RelatorioPedidosMaisVendidos {
 					+ v.getValue().entrySet().stream().collect(Collectors.toList()).get(0).getKey());
 			System.out.printf("QUANTIDADE: %s \n\n", v.getKey());
 		});
+	}
+	
+	//----------------------------------------------------------------------------------------------------------------
+	
+	public int getQuantidadeDeProdutosApresentados() {
+		this.geraRelatorioPedidosMaisVendidos();
+		return pedidosMaisVendidos.size();
+	}
+	
+	public List<Entry<Integer, Map<String, List<Pedido>>>> geraRelatorioComUmProdutoMaisVendido() {
+		produtoMaisVendido = pedidos.stream()
+				.collect(Collectors.groupingBy(Pedido::getQuantidade, Collectors.groupingBy(Pedido::getProduto)))
+				.entrySet().stream().sorted(Map.Entry.comparingByKey(Comparator.reverseOrder())).limit(1)
+				.collect(Collectors.toList());
+		return produtoMaisVendido;
+	}
+	
+	public String getProdutoMaisVendido() {
+		this.geraRelatorioComUmProdutoMaisVendido();
+		produtoMaisVendido.forEach(valor -> {
+			produto =  valor.getValue().entrySet().stream().collect(Collectors.toList()).get(0).getKey();
+		});
+
+		return produto;
+	}
+	
+	public int getQuantidadeDoProdutoMaisVendido() {
+		this.geraRelatorioComUmProdutoMaisVendido();
+		produtoMaisVendido.forEach(valor -> {
+			quantidade = valor.getKey();
+		});
+		return quantidade;
 	}
 }

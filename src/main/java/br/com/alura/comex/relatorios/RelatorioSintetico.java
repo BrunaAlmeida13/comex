@@ -62,5 +62,6 @@ public class RelatorioSintetico {
 		System.out.println("#################\n");
 		
 		relatorioCategoria.geraRelatorioProdutoMaisCaro();
+	
 	}
 }
