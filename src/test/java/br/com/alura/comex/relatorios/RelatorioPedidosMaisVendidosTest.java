@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 
 class RelatorioPedidosMaisVendidosTest {
 
-		RelatorioPedidosMaisVendidos relPedidosMaisVendidos = new RelatorioPedidosMaisVendidos();
+	RelatorioPedidosMaisVendidos relPedidosMaisVendidos = new RelatorioPedidosMaisVendidos();
 	
 	@Test
-	void deveriaMostrarAtéTresProdutosComMaiorQuantidadeVendida() {
+	void deveriaMostrarAteTresProdutosComMaiorQuantidadeVendida() {
 		assertEquals(3, relPedidosMaisVendidos.getQuantidadeDeProdutosApresentados());
 	}
 

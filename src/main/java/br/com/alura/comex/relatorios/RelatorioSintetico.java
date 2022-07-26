@@ -53,7 +53,7 @@ public class RelatorioSintetico {
 
 		System.out.println("#################\n");
 
-		relatorioCategoria.geraRelatorioByCategoria();
+		relatorioCategoria.apresentaRelatorioByCategoria();
 
 		System.out.println("#################\n");
 
@@ -62,6 +62,8 @@ public class RelatorioSintetico {
 		System.out.println("#################\n");
 		
 		relatorioCategoria.geraRelatorioProdutoMaisCaro();
-	
+		
+		System.out.println("######## TESTE #########\n");
+			
 	}
 }
