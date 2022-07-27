@@ -46,7 +46,7 @@ public class RelatorioVendasPorCategoria {
 		});
 	}
 
-	public List<Entry<String, Long>> getListaVazia() {
+	public List<Entry<String, Long>> getLista() {
 		return listaPedido;
 	}
 
@@ -66,11 +66,12 @@ public class RelatorioVendasPorCategoria {
 		});
 	}
 	
-	public List<Entry<String, Optional<Pedido>>>  getListaProdutoMaisCaroVazia () {
+	//------------------------------------------------------------------------------------------------------
+	
+	public List<Entry<String, Optional<Pedido>>>  getListaProdutoMaisCaro () {
 		return listaProdutoMaisCaro;
 	}
 
-	//------------------------------------------------------------------------------------------------------
 	public void geraRelatorioProdutoMaisCaro_umPedido() {
 		listaProdutoMaisCaro = pedidos.stream()
 				.collect(Collectors.groupingBy(Pedido::getCategoria,
@@ -93,5 +94,10 @@ public class RelatorioVendasPorCategoria {
 			System.out.printf("[PRODUTO: %s | ", v.getValue().get().getProduto());
 			System.out.printf("CLIENTE: %s ]\n", v.getValue().get().getCliente());
 		});
+	}
+	
+	public int getTamanhoLista_UmPedido() {
+		this.geraRelatorioProdutoMaisCaro_umPedido();
+		return listaProdutoMaisCaro.size();
 	}
 }
