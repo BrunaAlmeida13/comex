@@ -62,12 +62,6 @@ public class RelatorioSintetico {
 		System.out.println("######## Relatorio produto mais caro de cada categoria #########\n");
 		
 		relatorioCategoria.apresentaRelatorioProdutoMaisCaro();
-		
-		System.out.println("######## TESTE #########\n");
-		
-		relatorioCategoria.apresentaRelatorioProdutoMaisCaro_umPedido();
-		System.out.println("######## TESTE #########\n");
-		relatorioCategoria.apresentaRelatorioComClientesEProduto();
 			
 	}
 }
