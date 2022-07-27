@@ -51,19 +51,23 @@ public class RelatorioSintetico {
 		System.out.printf("- PEDIDO MAIS CARO: %s (%s)\n", calculosDosPedidos.pedidoMaisCaroQueFormatado(),
 				calculosDosPedidos.getPedidoMaisCaro().getProduto());
 
-		System.out.println("#################\n");
+		System.out.println("######### Relatório por categoria ########\n");
 
 		relatorioCategoria.apresentaRelatorioByCategoria();
 
-		System.out.println("#################\n");
+		System.out.println("######### Relatório pedidos mais vendidos ########\n");
 
 		relatorioPedidoMaisVendidos.apresentaRelatorio();
 		
-		System.out.println("#################\n");
+		System.out.println("######## Relatorio produto mais caro de cada categoria #########\n");
 		
-		relatorioCategoria.geraRelatorioProdutoMaisCaro();
+		relatorioCategoria.apresentaRelatorioProdutoMaisCaro();
 		
 		System.out.println("######## TESTE #########\n");
+		
+		relatorioCategoria.apresentaRelatorioProdutoMaisCaro_umPedido();
+		System.out.println("######## TESTE #########\n");
+		relatorioCategoria.apresentaRelatorioComClientesEProduto();
 			
 	}
 }

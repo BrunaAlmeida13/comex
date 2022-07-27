@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import br.com.alura.comex.pedido.CalculosDosPedidos;
@@ -16,7 +17,8 @@ public class RelatorioVendasPorCategoria {
 
 	CalculosDosPedidos calculosDosPedidos = new CalculosDosPedidos();
 	private ArrayList<Pedido> pedidos = null;
-	List<Entry<String, Long>> listaPedido;
+	private List<Entry<String, Long>> listaPedido;
+	private List<Entry<String, Optional<Pedido>>> listaProdutoMaisCaro;
 
 	public RelatorioVendasPorCategoria() {
 		ProcessadorDeArquivo processador = new ProcessadorDeArquivo();
@@ -43,22 +45,53 @@ public class RelatorioVendasPorCategoria {
 					calculosDosPedidos.calcularMontantePorCategoria(pedidos, v.getKey()));
 		});
 	}
-	
+
 	public List<Entry<String, Long>> getListaVazia() {
 		return listaPedido;
 	}
 
 	public void geraRelatorioProdutoMaisCaro() {
-		pedidos.stream()
+		listaProdutoMaisCaro = pedidos.stream()
 				.collect(Collectors.groupingBy(Pedido::getCategoria,
 						Collectors.maxBy(Comparator.comparing(Pedido::getPreco))))
-				.entrySet().stream().sorted(Map.Entry.comparingByKey()).collect(Collectors.toList()).forEach(v -> {
-					System.out.println("CATEGORIA: " + v.getKey());
-					System.out.println("PRODUTO: " + v.getValue().get().getProduto());
-					System.out.printf("PREÇO: R$ %.2f\n\n", v.getValue().get().getPreco());
-				});
+				.entrySet().stream().sorted(Map.Entry.comparingByKey()).collect(Collectors.toList());
 	}
 
+	public void apresentaRelatorioProdutoMaisCaro() {
+		this.geraRelatorioProdutoMaisCaro();
+		listaProdutoMaisCaro.forEach(v -> {
+			System.out.println("CATEGORIA: " + v.getKey());
+			System.out.println("PRODUTO: " + v.getValue().get().getProduto());
+			System.out.printf("PREÇO: R$ %.2f\n\n", v.getValue().get().getPreco());
+		});
+	}
 	
+	public List<Entry<String, Optional<Pedido>>>  getListaProdutoMaisCaroVazia () {
+		return listaProdutoMaisCaro;
+	}
+
+	//------------------------------------------------------------------------------------------------------
+	public void geraRelatorioProdutoMaisCaro_umPedido() {
+		listaProdutoMaisCaro = pedidos.stream()
+				.collect(Collectors.groupingBy(Pedido::getCategoria,
+						Collectors.maxBy(Comparator.comparing(Pedido::getPreco))))
+				.entrySet().stream().sorted(Map.Entry.comparingByKey()).limit(1).collect(Collectors.toList());
+	}
 	
+	public void apresentaRelatorioProdutoMaisCaro_umPedido() {
+		this.geraRelatorioProdutoMaisCaro_umPedido();
+		listaProdutoMaisCaro.forEach(v -> {
+			System.out.println("CATEGORIA: " + v.getKey());
+			System.out.println("PRODUTO: " + v.getValue().get().getProduto());
+			System.out.printf("PREÇO: R$ %.2f\n\n", v.getValue().get().getPreco());
+		});
+	}
+	
+	public void apresentaRelatorioComClientesEProduto() {
+		this.geraRelatorioProdutoMaisCaro();
+		listaProdutoMaisCaro.forEach(v -> {
+			System.out.printf("[PRODUTO: %s | ", v.getValue().get().getProduto());
+			System.out.printf("CLIENTE: %s ]\n", v.getValue().get().getCliente());
+		});
+	}
 }
