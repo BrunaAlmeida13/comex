@@ -22,12 +22,15 @@ public class ItemDePedidoEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private double preco_unitario;
 	private int quantidade;
 	private double desconto;
+	
+	@Column(name = "preco_unitario")
+	private double precoUnitario;
 
 	@Enumerated(EnumType.STRING)
-	private TipoDescontoEnum tipo_desconto;
+	@Column(name = "tipo_desconto")
+	private TipoDescontoEnum tipoDesconto;
 
 	@ManyToOne
 	@Column(name = "pedido_id")
@@ -44,7 +47,7 @@ public class ItemDePedidoEntity {
 		this.quantidade = quantidade;
 		this.pedido = pedido;
 		this.produto = produto;
-		this.preco_unitario = produto.getPreco_unitario();
+		this.precoUnitario = produto.getPrecoUnitario();
 	}
 
 	public PedidoEntity getPedido() {
@@ -63,12 +66,12 @@ public class ItemDePedidoEntity {
 		this.produto = produto;
 	}
 
-	public double getPreco_unitario() {
-		return preco_unitario;
+	public double getPrecoUnitario() {
+		return precoUnitario;
 	}
 
-	public void setPreco_unitario(double preco_unitario) {
-		this.preco_unitario = preco_unitario;
+	public void setPrecoUnitario(double precoUnitario) {
+		this.precoUnitario = precoUnitario;
 	}
 
 	public int getQuantidade() {
@@ -87,12 +90,12 @@ public class ItemDePedidoEntity {
 		this.desconto = desconto;
 	}
 
-	public TipoDescontoEnum getTipo_desconto() {
-		return tipo_desconto;
+	public TipoDescontoEnum getTipoDesconto() {
+		return tipoDesconto;
 	}
 
-	public void setTipo_desconto(TipoDescontoEnum tipo_desconto) {
-		this.tipo_desconto = tipo_desconto;
+	public void setTipoDesconto(TipoDescontoEnum tipoDesconto) {
+		this.tipoDesconto = tipoDesconto;
 	}
 
 	public long getId() {

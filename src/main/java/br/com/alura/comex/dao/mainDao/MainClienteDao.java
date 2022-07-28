@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 
 import br.com.alura.comex.dao.ClienteDao;
 import br.com.alura.comex.modelo.ClienteEntity;
+import br.com.alura.comex.modelo.EnderecoEntity;
 import br.com.alura.comex.util.JPAUtil;
 
 public class MainClienteDao {
@@ -25,8 +26,8 @@ public class MainClienteDao {
 	}
 
 	private static void dadosCliente(ClienteDao clienteDao) {
-		clienteDao.cadastrar(new ClienteEntity("Cliente 1", 1234567890, "6146354768", "rua 1", "01", "complemento",
-				"bairro", "cidade", "estado"));
+		clienteDao.cadastrar(new ClienteEntity("Cliente 1", "1234567890", "6146354768", new EnderecoEntity("rua 1", "01", "complemento",
+				"bairro", "cidade", "estado")));
 	}
 
 }

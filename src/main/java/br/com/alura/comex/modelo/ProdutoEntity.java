@@ -17,8 +17,12 @@ public class ProdutoEntity {
 	private Long id;
 	private String nome;
 	private String descricao;
-	private double preco_unitario;
-	private int quantidade_estoque;
+	
+	@Column(name = "preco_unitario")
+	private double precoUnitario;
+	
+	@Column(name = "quantidade_estoque")
+	private int quantidadeEstoque;
 	
 	@ManyToOne
 	@Column(name = "id_categoria")
@@ -41,20 +45,20 @@ public class ProdutoEntity {
 		this.descricao = descricao;
 	}
 
-	public double getPreco_unitario() {
-		return preco_unitario;
+	public double getPrecoUnitario() {
+		return precoUnitario;
 	}
 
-	public void setPreco_unitario(double preco_unitario) {
-		this.preco_unitario = preco_unitario;
+	public void setPrecoUnitario(double precoUnitario) {
+		this.precoUnitario = precoUnitario;
 	}
 
-	public int getQuantidade_estoque() {
-		return quantidade_estoque;
+	public int getQuantidadeEstoque() {
+		return quantidadeEstoque;
 	}
 
-	public void setQuantidade_estoque(int quantidade_estoque) {
-		this.quantidade_estoque = quantidade_estoque;
+	public void setQuantidadeEstoque(int quantidadeEstoque) {
+		this.quantidadeEstoque = quantidadeEstoque;
 	}
 
 	public Long getId() {

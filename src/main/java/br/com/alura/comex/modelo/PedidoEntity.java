@@ -30,10 +30,12 @@ public class PedidoEntity {
 	private double desconto;
 
 	@Enumerated(EnumType.STRING)
-	private TipoDescontoEnum tipo_desconto;
+	@Column(name = "tipo_desconto")
+	private TipoDescontoEnum tipoDesconto;
 
 	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-	private List<ItemDePedidoEntity> item_pedido = new ArrayList<>();
+	@Column(name = "item_pedido")
+	private List<ItemDePedidoEntity> itemPedido = new ArrayList<>();
 
 	@ManyToOne
 	@Column(name = "id_cliente")
@@ -48,7 +50,7 @@ public class PedidoEntity {
 	
 	public void adicionarItem(ItemDePedidoEntity item) {
 		item.setPedido(this);
-		this.item_pedido.add(item);
+		this.itemPedido.add(item);
 	}
 	
 	public LocalDate getData() {
@@ -67,12 +69,12 @@ public class PedidoEntity {
 		this.desconto = desconto;
 	}
 
-	public TipoDescontoEnum getTipo_desconto() {
-		return tipo_desconto;
+	public TipoDescontoEnum getTipoDesconto() {
+		return tipoDesconto;
 	}
 
-	public void setTipo_desconto(TipoDescontoEnum tipo_desconto) {
-		this.tipo_desconto = tipo_desconto;
+	public void setTipo_desconto(TipoDescontoEnum tipoDesconto) {
+		this.tipoDesconto = tipoDesconto;
 	}
 
 	public long getId() {
