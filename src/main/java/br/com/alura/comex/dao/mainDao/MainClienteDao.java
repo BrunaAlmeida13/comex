@@ -28,6 +28,10 @@ public class MainClienteDao {
 	private static void dadosCliente(ClienteDao clienteDao) {
 		clienteDao.cadastrar(new ClienteEntity("Cliente 1", "1234567890", "6146354768", new EnderecoEntity("rua 1", "01", "complemento",
 				"bairro", "cidade", "estado")));
+		/*clienteDao.cadastrar(new ClienteEntity("Cliente 2", "1234567890", "6146354768", new EnderecoEntity("rua 2", "02", "complemento",
+				"bairro", "cidade", "estado")));
+		clienteDao.cadastrar(new ClienteEntity("Cliente 3", "1234567890", "6146354768", new EnderecoEntity("rua 3", "02", "complemento",
+				"bairro", "cidade", "estado")));*/
 	}
 
 }

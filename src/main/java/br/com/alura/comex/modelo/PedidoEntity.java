@@ -2,7 +2,6 @@ package br.com.alura.comex.modelo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,6 +12,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -38,7 +38,7 @@ public class PedidoEntity {
 	private List<ItemDePedidoEntity> itemPedido = new ArrayList<>();
 
 	@ManyToOne
-	@Column(name = "id_cliente")
+	//@JoinColumn(name = "id_cliente")
 	private ClienteEntity cliente;
 
 	public PedidoEntity() {

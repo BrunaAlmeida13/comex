@@ -1,9 +1,15 @@
 package br.com.alura.comex.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,7 +25,11 @@ public class EnderecoEntity {
 	private String bairro;
 	private String cidade;
 	private String estado;
-	
+
+	//@Column(name = "id_cliente")
+	@OneToMany(mappedBy = "endereco", cascade = CascadeType.ALL)
+	private List<ClienteEntity> listaCliente = new ArrayList<>();
+
 	public EnderecoEntity() {
 	}
 	
@@ -32,6 +42,11 @@ public class EnderecoEntity {
 		this.estado = estado;
 	}
 
+	public void adicionarCliente(ClienteEntity cliente) {
+		cliente.setEndereco(this);
+		this.listaCliente.add(cliente);
+	}
+	
 	public String getRua() {
 		return rua;
 	}

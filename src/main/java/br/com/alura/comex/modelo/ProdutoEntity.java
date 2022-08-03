@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -25,10 +26,21 @@ public class ProdutoEntity {
 	private int quantidadeEstoque;
 	
 	@ManyToOne
-	@Column(name = "id_categoria")
+	//@JoinColumn(name = "id_categoria")
 	private CategoriaEntity categoria;
-	
 
+	public ProdutoEntity() {
+	}
+	
+	public ProdutoEntity(String nome, String descricao, double precoUnitario, int quantidadeEstoque,
+			CategoriaEntity categoria) {
+		this.nome = nome;
+		this.descricao = descricao;
+		this.precoUnitario = precoUnitario;
+		this.quantidadeEstoque= quantidadeEstoque;
+		this.categoria = categoria;
+	}
+	
 	public String getNome() {
 		return nome;
 	}
@@ -63,5 +75,9 @@ public class ProdutoEntity {
 
 	public Long getId() {
 		return id;
+	}
+
+	public Long getCategoriaId() {
+		return categoria.getId();
 	}
 }

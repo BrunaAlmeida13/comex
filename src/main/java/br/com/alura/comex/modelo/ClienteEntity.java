@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -14,11 +15,13 @@ public class ClienteEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String nome;
 	private String cpf;
 	private String telefone;
 	
 	@ManyToOne
+	@JoinColumn(name = "id_endereco")
 	private EnderecoEntity endereco;
 
 	public ClienteEntity(String nome, String cpf, String telefone, EnderecoEntity endereco) {
@@ -53,6 +56,14 @@ public class ClienteEntity {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+	
+	public EnderecoEntity getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(EnderecoEntity endereco) {
+		this.endereco = endereco;
 	}
 
 	public long getId() {
