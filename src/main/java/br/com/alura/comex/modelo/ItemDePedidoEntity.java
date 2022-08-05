@@ -31,21 +31,25 @@ public class ItemDePedidoEntity {
 	private TipoDescontoEnum tipoDesconto;
 
 	@ManyToOne
-	@JoinColumn(name = "pedido_id")
+	@JoinColumn(name = "id_pedido")
 	private PedidoEntity pedido;
 
 	@ManyToOne
-	@JoinColumn(name = "produto_id")
+	@JoinColumn(name = "id_produto")
 	private ProdutoEntity produto;
 
 	public ItemDePedidoEntity() {
 	}
 
-	public ItemDePedidoEntity(int quantidade, PedidoEntity pedido, ProdutoEntity produto) {
+	public ItemDePedidoEntity(int quantidade, double desconto, double precoUnitario, TipoDescontoEnum tipoDesconto,
+			PedidoEntity pedido, ProdutoEntity produto) {
+		
 		this.quantidade = quantidade;
+		this.desconto = desconto;
+		this.precoUnitario = precoUnitario;
+		this.tipoDesconto = tipoDesconto;
 		this.pedido = pedido;
 		this.produto = produto;
-		this.precoUnitario = produto.getPrecoUnitario();
 	}
 
 	public PedidoEntity getPedido() {

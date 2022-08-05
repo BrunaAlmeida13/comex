@@ -25,7 +25,6 @@ public class ClienteEntity {
 	private String estado;
 
 	public ClienteEntity() {
-		super();
 	}
 
 	public ClienteEntity(String nome, String cpf, String telefone, String rua, String numero, String complemento,

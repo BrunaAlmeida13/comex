@@ -48,6 +48,23 @@ public class PedidoEntity {
 		this.cliente = cliente;
 	}
 	
+	public PedidoEntity(LocalDate data, double desconto, TipoDescontoEnum tipoDesconto, ClienteEntity cliente) {
+		this.data = data;
+		this.desconto = desconto;
+		this.tipoDesconto = tipoDesconto;
+		this.cliente = cliente;
+	}
+	
+	public PedidoEntity(LocalDate data, double desconto, TipoDescontoEnum tipoDesconto,
+			List<ItemDePedidoEntity> itemPedido, ClienteEntity cliente) {
+
+		this.data = data;
+		this.desconto = desconto;
+		this.tipoDesconto = tipoDesconto;
+		this.itemPedido = itemPedido;
+		this.cliente = cliente;
+	}
+
 	public void adicionarItem(ItemDePedidoEntity item) {
 		item.setPedido(this);
 		this.itemPedido.add(item);
