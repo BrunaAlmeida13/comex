@@ -27,10 +27,11 @@ public class ProdutoDao {
 		return em.createQuery(jpql, ProdutoEntity.class).getResultList();
 	}
 
-	public List<ProdutoEntity> listarIndisponiveis(int quantidade_estoque) {
-		String jpql = "SELECT p FROM ProdutoEntity p WHERE p.quantidade_estoque = :quantidade_estoque = 0";
+	public List<ProdutoEntity> listarIndisponiveis(int quantidadeEstoque) {
+		int qntdEstoque = 0;
+		String jpql = "SELECT p FROM ProdutoEntity p WHERE p.quantidadeEstoque = :qntdEstoque";
 		return em.createQuery(jpql, ProdutoEntity.class)
-				.setParameter("quantidade_estoque", quantidade_estoque)
+				.setParameter("qntdEstoque", quantidadeEstoque)
 				.getResultList();
 	}
 }

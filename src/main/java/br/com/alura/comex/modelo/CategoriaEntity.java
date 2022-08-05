@@ -25,8 +25,9 @@ public class CategoriaEntity {
 	public CategoriaEntity() {
 	}
 
-	public CategoriaEntity(String nome) {
+	public CategoriaEntity(String nome, StatusEnum status) {
 		this.nome = nome;
+		this.status = status;
 	}
 
 	public Long getId() {

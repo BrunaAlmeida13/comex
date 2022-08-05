@@ -38,7 +38,7 @@ public class PedidoEntity {
 	private List<ItemDePedidoEntity> itemPedido = new ArrayList<>();
 
 	@ManyToOne
-	//@JoinColumn(name = "id_cliente")
+	@JoinColumn(name = "id_cliente")
 	private ClienteEntity cliente;
 
 	public PedidoEntity() {

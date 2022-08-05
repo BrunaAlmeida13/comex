@@ -42,5 +42,4 @@ public class ClienteDao {
 				.setParameter("nome", nome)
 				.getResultList();
 	}
-	
 }

@@ -31,11 +31,11 @@ public class ItemDePedidoEntity {
 	private TipoDescontoEnum tipoDesconto;
 
 	@ManyToOne
-	//@JoinColumn(name = "pedido_id")
+	@JoinColumn(name = "pedido_id")
 	private PedidoEntity pedido;
 
 	@ManyToOne
-	//@JoinColumn(name = "produto_id")
+	@JoinColumn(name = "produto_id")
 	private ProdutoEntity produto;
 
 	public ItemDePedidoEntity() {

@@ -26,7 +26,7 @@ public class ProdutoEntity {
 	private int quantidadeEstoque;
 	
 	@ManyToOne
-	//@JoinColumn(name = "id_categoria")
+	@JoinColumn(name = "id_categoria")
 	private CategoriaEntity categoria;
 
 	public ProdutoEntity() {

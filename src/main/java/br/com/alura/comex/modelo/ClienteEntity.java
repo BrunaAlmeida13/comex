@@ -4,8 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,23 +13,32 @@ public class ClienteEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String nome;
 	private String cpf;
 	private String telefone;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_endereco")
-	private EnderecoEntity endereco;
+	private String rua;
+	private String numero;
+	private String complemento;
+	private String bairro;
+	private String cidade;
+	private String estado;
 
-	public ClienteEntity(String nome, String cpf, String telefone, EnderecoEntity endereco) {
+	public ClienteEntity() {
+		super();
+	}
+
+	public ClienteEntity(String nome, String cpf, String telefone, String rua, String numero, String complemento,
+			String bairro, String cidade, String estado) {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.telefone = telefone;
-		this.endereco = endereco;
-	}
-
-	public ClienteEntity() {
+		this.rua = rua;
+		this.numero = numero;
+		this.complemento = complemento;
+		this.bairro = bairro;
+		this.cidade = cidade;
+		this.estado = estado;
 	}
 
 	public String getNome() {
@@ -57,16 +64,56 @@ public class ClienteEntity {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	
-	public EnderecoEntity getEndereco() {
-		return endereco;
+
+	public String getRua() {
+		return rua;
 	}
 
-	public void setEndereco(EnderecoEntity endereco) {
-		this.endereco = endereco;
+	public void setRua(String rua) {
+		this.rua = rua;
 	}
 
-	public long getId() {
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public Long getId() {
 		return id;
 	}
 }
