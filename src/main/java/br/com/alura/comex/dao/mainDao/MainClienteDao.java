@@ -14,7 +14,6 @@ public class MainClienteDao {
 
 		EntityManager em = JPAUtil.getEntityManager();
 		ClienteDao clienteDao = new ClienteDao(em);
-		ClienteEntity cliente = new ClienteEntity();
 
 		em.getTransaction().begin();
 
@@ -27,6 +26,7 @@ public class MainClienteDao {
 		em.close();
 	}
 
+	@SuppressWarnings("unused")
 	private static void dadosCliente(ClienteDao clienteDao) {
 		clienteDao.cadastrar(new ClienteEntity("Cliente 1", "1234567890", "6146354768", "rua 1", "01", "complemento", "bairro", "cidade", "estado"));
 		clienteDao.cadastrar(new ClienteEntity("Cliente 2", "1234567890", "6146354768", "rua 1", "01", "complemento", "bairro", "cidade", "estado"));

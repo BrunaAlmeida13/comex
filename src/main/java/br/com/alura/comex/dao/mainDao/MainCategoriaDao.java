@@ -13,7 +13,6 @@ public class MainCategoriaDao {
 		
 		EntityManager em = JPAUtil.getEntityManager();
 		CategoriaDao categoriaDao = new CategoriaDao(em);
-		CategoriaEntity categoria = new CategoriaEntity();
 
 		em.getTransaction().begin();
 		
@@ -28,6 +27,7 @@ public class MainCategoriaDao {
 
 	}
 
+	@SuppressWarnings("unused")
 	private static void dadosCategoria(CategoriaDao categoriaDao) {
 		categoriaDao.cadastrar(new CategoriaEntity("Categoria 1", StatusEnum.ATIVA));
 		categoriaDao.cadastrar(new CategoriaEntity("Categoria 2", StatusEnum.INATIVA));
