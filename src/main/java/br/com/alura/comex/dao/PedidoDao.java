@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import br.com.alura.comex.modelo.ClienteEntity;
 import br.com.alura.comex.modelo.PedidoEntity;
 
 public class PedidoDao {
